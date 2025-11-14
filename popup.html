@@ -7,26 +7,129 @@
   <title>ClickDefender</title>
 </head>
 <body>
-  <div id="card" class="card">
-    <div class="card-header">
-      <div class="title">ClickDefender</div>
-      <div id="badge" class="badge"><span id="dot"></span><span id="badge-text"></span></div>
+  <div class="card">
+    <div class="tabs">
+      <button id="tab-analysis" class="tab-btn active">Analysis</button>
+      <button id="tab-details" class="tab-btn">Page Details</button>
     </div>
 
-    <div class="line"><strong>URL:</strong> <span id="url">Loading…</span></div>
-    <div class="line"><strong>Score:</strong> <span id="score">—</span></div>
-    <div class="line"><strong>Reason:</strong>
-      <div id="reasons" class="reasons">—</div>
+    <!-- View 1: Risk Analysis -->
+    <div id="view-analysis" class="view active">
+        <!-- This view remains unchanged -->
+        <div class="header">
+            <img src="icon64.png" class="header-icon" />
+            <div class="title">ClickDefender</div>
+        </div>
+        <div class="gauge-container">
+            <div class="gauge-background"></div>
+            <div id="gauge-arc" class="gauge-arc"></div>
+            <div class="gauge-content">
+                <div id="score-text" class="score-text">--</div>
+                <div id="status-text" class="status-text">Analyzing...</div>
+            </div>
+        </div>
+        <div class="reasons-container">
+            <div id="reasons-list" class="reasons-list"></div>
+        </div>
+        <div class="actions">
+            <button id="continueBtn" class="btn btn-safe"><span class="btn-icon">✅</span> Mark as Safe</button>
+            <button id="exitBtn" class="btn btn-unsafe"><span class="btn-icon">❌</span> Mark as Unsafe</button>
+        </div>
+        <div id="msg" class="msg"></div>
     </div>
 
-    <div class="actions">
-      <button id="continueBtn" class="btn btn-safe">✅ Continue</button>
-      <button id="exitBtn" class="btn btn-unsafe">❌ Exit</button>
+    <!-- View 2: Page Details (New Visual Design) -->
+    <div id="view-details" class="view">
+        <div id="details-loading">Loading page details...</div>
+        <div id="details-content" class="hidden">
+            <div class="details-grid">
+
+                <!-- Card 1: Core Vitals -->
+                <div class="details-card full-width">
+                    <div class="card-title"><span class="card-icon">⚡️</span> Core Vitals</div>
+                    <div class="card-body horizontal">
+                        <div class="metric-box">
+                            <div class="metric-value" id="vitals-fcp">...</div>
+                            <div class="metric-label">FCP</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-value" id="vitals-cls">...</div>
+                            <div class="metric-label">Layout Shift</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-value" id="vitals-load-time">...</div>
+                            <div class="metric-label">Load Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Page Composition -->
+                <div class="details-card">
+                    <div class="card-title"><span class="card-icon">📦</span> Composition</div>
+                    <div class="card-body">
+                        <div class="detail-item">
+                            <div class="detail-label">Total Size</div>
+                            <div class="detail-value" id="comp-total">...</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">JavaScript</div>
+                            <div class="detail-value" id="comp-js">...</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Images</div>
+                            <div class="detail-value" id="comp-img">...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Security & Privacy -->
+                <div class="details-card">
+                    <div class="card-title"><span class="card-icon">🛡️</span> Privacy</div>
+                     <div class="card-body">
+                        <div class="detail-item">
+                            <div class="detail-label">Secure (HTTPS)</div>
+                            <div class="detail-value" id="priv-https">...</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Cookies</div>
+                            <div class="detail-value" id="priv-cookies">...</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">3rd-Party JS</div>
+                            <div class="detail-value" id="priv-3p-scripts">...</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4: SEO & Accessibility -->
+                <div class="details-card full-width">
+                  <div class="card-title"><span class="card-icon">🔎</span> SEO & Accessibility</div>
+                  <div class="card-body">
+                      <div class="detail-item">
+                          <div class="detail-label">Title Tag</div>
+                          <div class="detail-value" id="seo-title">...</div>
+                      </div>
+                      <div class="detail-item clickable" id="seo-desc-item">
+                          <div class="detail-label">Meta Description</div>
+                          <div class="detail-value" id="seo-desc">...</div>
+                      </div>
+                      
+                      <div id="seo-desc-full" class="full-text-box hidden"></div>
+
+                      <div class="detail-item">
+                          <div class="detail-label">Primary Heading (H1)</div>
+                          <div class="detail-value" id="seo-h1">...</div>
+                      </div>
+                      <div class="detail-item">
+                          <div class="detail-label">Images w/o Alt Text</div>
+                          <div class="detail-value" id="seo-alt">...</div>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
     </div>
 
-    <div id="msg" class="msg"></div>
   </div>
-
   <script src="popup.js"></script>
 </body>
 </html>

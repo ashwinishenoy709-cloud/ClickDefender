@@ -7,7 +7,8 @@
     "tabs",
     "storage",
     "activeTab",
-    "scripting"
+    "scripting",
+    "cookies"
   ],
   "background": {
     "service_worker": "background.js",
@@ -17,19 +18,38 @@
     "default_title": "ClickDefender",
     "default_popup": "popup.html"
   },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
   "icons": {
     "64": "icon64.png",
     "128": "icon128.png"
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_start"
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_end"
     }
   ],
   "host_permissions": [
     "<all_urls>",
     "https://safebrowsing.googleapis.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icon64.png",
+        "icon128.png",
+        "content.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
   ]
 }

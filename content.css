@@ -1,0 +1,67 @@
+/* Keyframes for the flicker animation */
+@keyframes flicker-danger {
+  0%, 100% {
+    box-shadow: 0 0 5px #d63031, 0 0 10px #d63031, 0 0 20px #d63031, 0 0 40px #ff3838;
+  }
+  50% {
+    box-shadow: 0 0 10px #d63031, 0 0 20px #d63031, 0 0 40px #ff3838, 0 0 80px #ff3838;
+  }
+}
+
+/* Base styles for the shadow DOM host */
+:host {
+  all: initial;
+}
+
+/* Overlay for the modal popups */
+#cd-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2147483646;
+}
+
+/* The main popup card */
+#cd-card {
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #333;
+  z-index: 2147483647;
+  border: 1px solid #ddd;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Flicker animation for dangerous cards */
+#cd-card.flicker {
+  animation: flicker-danger 1.5s infinite ease-in-out;
+  border-color: #d63031;
+}
+
+/* Button container */
+.button-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+/* Individual buttons */
+.action-button {
+  flex: 1;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  transition: filter 0.2s ease;
+}
+
+.action-button:hover {
+  filter: brightness(0.95);
+}
